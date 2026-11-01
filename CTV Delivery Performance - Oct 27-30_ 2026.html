@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CTV Delivery Performance - Oct 27-30, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts-more.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/modules/heatmap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/modules/treemap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/modules/funnel.js"></script>
+<style>
+:root {
+  --card-bg: #ffffff;
+  --heading: #2b2c2f;
+  --body: #2b2c2f;
+  --muted: #767370;
+  --line: #d5d2ce;
+  --green: #25a767;
+  --green-soft: #e6f5ee;
+  --red: #e62828;
+  --red-soft: #fdeaea;
+  --amber: #f59e0b;
+  --amber-soft: #fffbeb;
+  --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --r: 14px;
+  --r-sm: 8px;
+}
+:root {
+  --bg: #f4f4f7;
+  --surface: #fcfcfe;
+  --primary: #6366f1;
+  --primary-d: #4f46e5;
+  --primary-soft: #eef0fe;
+  --primary-card: #e8eafd;
+  --primary-ink: #2e2a6b;
+  --accent: #c4b5fd;
+  --accent-soft: #f1edfe;
+  --accent-ink: #5b21b6;
+  --accent-rgb: 139, 92, 246;
+  --accent-a1: 0.13;
+  --accent-card-alpha: 0.09;
+  --chart-1: #6c7bb7;
+  --chart-2: #cba5d5;
+  --chart-3: #d194a0;
+  --chart-4: #c5b077;
+  --chart-5: #94bb81;
+  --chart-6: #7fbdb3;
+  --chart-7: #9b8ecc;
+  --chart-8: #738d96;
+  --chart-9: #c987c3;
+  --chart-10: #9f9f7f;
+  --chart-11: #70c278;
+  --chart-12: #c3acb0;
+  --chart-13: #a2b2d7;
+  --chart-14: #6da3b0;
+  --chart-15: #ae995b;
+  --ramp-0: #efebfe;
+  --ramp-1: #a78bfa;
+  --ramp-2: #8b5cf6;
+  --ramp-3: #6366f1;
+}
+html { background: var(--bg); }
+body {
+  min-height: 100%;
+  font-family: var(--sans);
+  color: var(--body);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, rgba(var(--accent-rgb), var(--accent-a1)) 0%, rgba(var(--accent-rgb), 0.03) 60%, transparent 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 680px;
+  background-position: top center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.shell { max-width: 1024px; margin: 0 auto; padding: 20px 40px 40px; }
+@media (max-width: 900px) { .shell { padding: 20px 24px 32px; } }
+@media (max-width: 768px) { .shell { padding: 16px 16px 28px; } }
+
+.hdr { padding-top: 70px; margin-bottom: 28px; }
+.kicker { font: 600 10px var(--sans); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 13px; }
+.hdr-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+h1 { font: 600 40px var(--sans); color: var(--heading); letter-spacing: -0.02em; line-height: 1.1; max-width: 700px; margin-bottom: 16px; }
+.lede { font-size: 15px; line-height: 1.65; max-width: 620px; }
+.lede strong, .doc-body strong { font-weight: 600; color: var(--heading); }
+.meta-label { font: 600 10px var(--sans); text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
+.meta-value { font: 500 14px var(--sans); color: var(--heading); margin-bottom: 14px; }
+.meta-value:last-child { margin-bottom: 0; }
+.meta { text-align: right; }
+
+.dash-section { margin-bottom: 44px; }
+.dash-section-label { font: 600 20px var(--sans); color: var(--heading); letter-spacing: -0.01em; padding-bottom: 7px; border-bottom: 1px solid rgba(117,118,119,0.18); margin-bottom: 20px; }
+
+.blockquote, .note {
+  position: relative;
+  background: rgba(var(--accent-rgb), var(--accent-card-alpha));
+  border-radius: var(--r);
+  padding: 20px 24px 20px 44px;
+  margin-bottom: 36px;
+}
+.blockquote::before, .note::before {
+  content: ""; position: absolute; left: 18px; top: 20px; bottom: 20px; width: 3px; border-radius: 2px;
+  background: rgba(var(--accent-rgb), 0.5);
+}
+.note-title { font: 700 16px var(--sans); color: var(--heading); margin-bottom: 7px; }
+.note p { font-size: 14px; line-height: 1.7; }
+.note strong { color: var(--heading); font-weight: 600; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 990px) { .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 400px) { .kpi-grid { grid-template-columns: minmax(0, 1fr); } }
+.kpi { background: var(--card-bg); border-radius: var(--r); outline: 1px solid rgba(117,118,119,0.15); padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+.kpi-label { font: 600 10px var(--sans); text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); flex: 1; margin-bottom: 14px; }
+.kpi-val { font: 600 32px var(--sans); color: var(--heading); letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+.kpi-delta { font: 600 12px var(--sans); display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 6px; }
+.kpi-delta .vs { color: var(--muted); font-weight: 400; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.grid2.wide { grid-template-columns: 7fr 5fr; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 700px) { .grid2, .grid2.wide, .grid3 { grid-template-columns: 1fr; } }
+.kpi-grid, .grid2, .grid3, .card, .chart-container, .chart-container > * { min-width: 0; }
+.card { background: var(--card-bg); border-radius: var(--r); outline: 1px solid rgba(117,118,119,0.15); padding: 18px 18px 14px; overflow: hidden; }
+.card-hd { margin-bottom: 16px; display: flex; align-items: flex-start; }
+.card-title { font: 600 15px var(--sans); color: var(--heading); letter-spacing: -0.01em; }
+.card-sub { font: 400 13px var(--sans); color: var(--muted); margin-top: 4px; }
+.chart-container { width: 100%; min-height: 280px; overflow: hidden; }
+@media (max-width: 700px) { .chart-container { min-height: 240px; } }
+
+.fnl-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.fnl-name { width: 120px; font: 600 11px var(--sans); text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); flex-shrink: 0; }
+.fnl-track { flex: 1; height: 26px; background: rgba(117,118,119,0.08); border-radius: 4px; overflow: hidden; min-width: 0; }
+.fnl-bar { height: 100%; border-radius: 4px; }
+.fnl-val { width: 70px; text-align: right; font: 600 13px var(--sans); color: var(--heading); font-variant-numeric: tabular-nums; }
+.fnl-rate { width: 64px; text-align: right; font: 400 12px var(--sans); color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th { font: 600 10px var(--sans); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); text-align: right; padding: 0 0 10px 8px; border-bottom: 1px solid rgba(117,118,119,0.15); }
+th:first-child, td:first-child { text-align: left; padding-left: 0; }
+td { font: 400 13px var(--sans); color: var(--body); text-align: right; padding: 13px 0 13px 8px; border-bottom: 1px solid rgba(117,118,119,0.15); font-variant-numeric: tabular-nums; }
+td:first-child { color: var(--heading); }
+tr:last-child td { border-bottom: none; }
+tr.total td { font-weight: 600; color: var(--heading); }
+
+.takeaway { background: rgba(var(--accent-rgb), var(--accent-card-alpha)); border-radius: var(--r); padding: 22px 22px 20px; }
+.tk-kicker { font: 600 10px var(--sans); text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin-bottom: 14px; }
+.tk-metric { font: 600 36px var(--sans); color: var(--heading); letter-spacing: -0.03em; line-height: 1; margin-bottom: 12px; }
+.tk-title { font: 600 15px var(--sans); color: var(--heading); letter-spacing: -0.01em; margin-bottom: 6px; }
+.tk-body { font-size: 14px; line-height: 1.5; }
+.footer { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+.reveal { opacity: 0; transform: translateY(8px); }
+.reveal.in { opacity: 1; transform: none; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+@media print {
+  @page { size: A4; margin: 12mm; }
+  .kpi, .card, .takeaway, .blockquote, .note, .priority, .chart-container, blockquote, figure, img, svg, tr { break-inside: avoid; }
+  h1, h2, h3, h4, .dash-section-label, .card-hd, .note-title { break-after: avoid; }
+  html, body { background-attachment: scroll; }
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  @supports (box-decoration-break: clone) {
+    @page { margin: 0; }
+    .shell { box-decoration-break: clone; -webkit-box-decoration-break: clone; padding-top: 40px; padding-bottom: 40px; }
+  }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<header class="hdr">
+  <div class="kicker">CTV video ads &middot; Delivery report</div>
+  <div class="hdr-row">
+    <div>
+      <h1>CTV ads are finishing almost every view, but viewability isn't being measured</h1>
+      <p class="lede">Across 4 days, the 3 CTV creatives served <strong>41,057 impressions</strong> for <strong>$1,440</strong> (<strong>$35.06 CPM</strong>). <strong>99.4%</strong> of impressions ran to completion, and the quartile funnel barely leaks. Click-through is near zero (<strong>2 clicks</strong>), which is normal for CTV. Only <strong>4 impressions</strong> carry viewability data, so viewability can't be judged yet.</p>
+    </div>
+    <div class="meta">
+      <div class="meta-label">Reporting Period</div>
+      <div class="meta-value">Oct 27 &ndash; Oct 30, 2026</div>
+      <div class="meta-label">Prepared On</div>
+      <div class="meta-value">Nov 1, 2026</div>
+    </div>
+  </div>
+</header>
+
+<div class="note">
+  <div class="note-title">Data availability</div>
+  <p>The dataset covers <strong>4 days</strong> (Oct 27&ndash;30, 2026), so no prior period exists to compare against and no changes are shown. Treat everything here as an early read. Viewability uses sampled measurement: <strong>4 tracked impressions</strong>, of which 1 was viewed.</p>
+</div>
+
+<section class="dash-section">
+  <div class="dash-section-label">Delivery &amp; cost</div>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-label">Impressions</div><div class="kpi-val">41.1K</div><div class="kpi-delta"><span class="vs">No prior period</span></div></div>
+    <div class="kpi"><div class="kpi-label">Completed views</div><div class="kpi-val">40.8K</div><div class="kpi-delta"><span class="vs">of 41,057 started</span></div></div>
+    <div class="kpi"><div class="kpi-label">Completion rate (VCR)</div><div class="kpi-val">99.4%</div><div class="kpi-delta"><span class="vs">completed / impressions</span></div></div>
+    <div class="kpi"><div class="kpi-label">Advertiser cost</div><div class="kpi-val">$1,440</div><div class="kpi-delta"><span class="vs">4-day total</span></div></div>
+    <div class="kpi"><div class="kpi-label">CPM</div><div class="kpi-val">$35.06</div><div class="kpi-delta"><span class="vs">cost per 1,000 imps</span></div></div>
+  </div>
+
+  <div class="grid2 wide">
+    <div class="card">
+      <div class="card-hd"><div><div class="card-title">Daily impressions and cost</div><div class="card-sub">Oct 27 &ndash; 30, 2026. Oct 27 was a partial ramp-up day.</div></div></div>
+      <div class="chart-container" id="c-daily"></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div><div class="card-title">Daily completion rate</div><div class="card-sub">Completed views as % of impressions</div></div></div>
+      <div class="chart-container" id="c-vcr"></div>
+    </div>
+  </div>
+</section>
+
+<section class="dash-section">
+  <div class="dash-section-label">Video completion funnel</div>
+  <div class="card">
+    <div class="card-hd"><div><div class="card-title">Where viewers drop off</div><div class="card-sub">Share of impressions reaching each quartile. 99.96% reach 25% and 99.43% finish; only 0.49% of those who hit 25% leave before the end.</div></div></div>
+    <div class="fnl-row"><div class="fnl-name">Impressions</div><div class="fnl-track"><div class="fnl-bar" style="width:100%;background:var(--chart-1)"></div></div><div class="fnl-val">41,057</div><div class="fnl-rate">100%</div></div>
+    <div class="fnl-row"><div class="fnl-name">25% played</div><div class="fnl-track"><div class="fnl-bar" style="width:99.96%;background:var(--chart-2)"></div></div><div class="fnl-val">41,039</div><div class="fnl-rate">99.96%</div></div>
+    <div class="fnl-row"><div class="fnl-name">50% played</div><div class="fnl-track"><div class="fnl-bar" style="width:99.67%;background:var(--chart-3)"></div></div><div class="fnl-val">40,923</div><div class="fnl-rate">99.67%</div></div>
+    <div class="fnl-row"><div class="fnl-name">75% played</div><div class="fnl-track"><div class="fnl-bar" style="width:99.46%;background:var(--chart-4)"></div></div><div class="fnl-val">40,836</div><div class="fnl-rate">99.46%</div></div>
+    <div class="fnl-row"><div class="fnl-name">Completed</div><div class="fnl-track"><div class="fnl-bar" style="width:99.43%;background:var(--chart-5)"></div></div><div class="fnl-val">40,822</div><div class="fnl-rate">99.43%</div></div>
+  </div>
+</section>
+
+<section class="dash-section">
+  <div class="dash-section-label">Creative comparison</div>
+  <div class="grid2 wide" style="margin-top:0">
+    <div class="card">
+      <div class="card-hd"><div><div class="card-title">Creative performance</div><div class="card-sub">All 3 creatives run in one campaign (Social CTV, Zipcodes)</div></div></div>
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Creative</th><th>Imps</th><th>Cost</th><th>CPM</th><th>VCR</th><th>Clicks</th></tr></thead>
+        <tbody>
+          <tr><td>Burgess for Georgia 15s</td><td>14,190</td><td>$497.54</td><td>$35.06</td><td>99.35%</td><td>1</td></tr>
+          <tr><td>Stephanie Burgess for State Rep 15s</td><td>14,178</td><td>$497.15</td><td>$35.06</td><td>99.36%</td><td>0</td></tr>
+          <tr><td>Burgess for Georgia 30s</td><td>12,689</td><td>$444.97</td><td>$35.07</td><td>99.59%</td><td>1</td></tr>
+          <tr class="total"><td>Total</td><td>41,057</td><td>$1,439.66</td><td>$35.06</td><td>99.43%</td><td>2</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div><div class="card-title">Impression share by creative</div><div class="card-sub">Delivery is split almost evenly</div></div></div>
+      <div class="chart-container" id="c-creative"></div>
+    </div>
+  </div>
+</section>
+
+<section class="dash-section">
+  <div class="dash-section-label">Publishers &amp; channels</div>
+  <div class="grid2 wide" style="margin-top:0">
+    <div class="card">
+      <div class="card-hd"><div><div class="card-title">Top 10 publishers by impressions</div><div class="card-sub">57 publishers in total. Vizio, unlabeled inventory and Telly deliver 86.4%.</div></div></div>
+      <div class="chart-container" id="c-pub" style="min-height:340px"></div>
+    </div>
+    <div class="card">
+      <div class="card-hd"><div><div class="card-title">Seller domain share</div><div class="card-sub">Share of impressions by seller</div></div></div>
+      <div class="chart-container" id="c-seller" style="min-height:340px"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <div class="card-hd"><div><div class="card-title">Top publishers: cost and completion</div><div class="card-sub">Publishers with more than 5,000 impressions</div></div></div>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Publisher</th><th>Imps</th><th>Share</th><th>Cost</th><th>CPM</th><th>VCR</th></tr></thead>
+      <tbody>
+        <tr><td>Vizio Inc.</td><td>16,143</td><td>39.3%</td><td>$565.15</td><td>$35.01</td><td>99.61%</td></tr>
+        <tr><td>(unlabeled publisher)</td><td>11,083</td><td>27.0%</td><td>$388.41</td><td>$35.05</td><td>98.99%</td></tr>
+        <tr><td>Telly Tv</td><td>8,231</td><td>20.0%</td><td>$288.13</td><td>$35.01</td><td>99.83%</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section class="dash-section">
+  <div class="dash-section-label">Viewability &amp; clicks</div>
+  <div class="grid2" style="margin-top:0">
+    <div class="takeaway">
+      <div class="tk-kicker">Viewability</div>
+      <div class="tk-metric">4 of 41,057</div>
+      <div class="tk-title">Too little measured to judge</div>
+      <div class="tk-body">Only 4 impressions were sampled for viewability and 1 was viewed. That is a measurement gap, not a viewability rate. Confirm that viewability tracking is switched on for this CTV campaign.</div>
+    </div>
+    <div class="takeaway">
+      <div class="tk-kicker">Clicks</div>
+      <div class="tk-metric">2 clicks</div>
+      <div class="tk-title">CTR 0.005%, expected on CTV</div>
+      <div class="tk-body">Viewers use a remote, not a mouse, so clicks are not the success signal here. Completed views and VCR are the better yardsticks.</div>
+    </div>
+  </div>
+</section>
+
+<section class="dash-section">
+  <div class="dash-section-label">Key findings</div>
+  <div class="grid3">
+    <div class="takeaway">
+      <div class="tk-kicker">Completion</div>
+      <div class="tk-metric">99.4%</div>
+      <div class="tk-title">Exceptionally high VCR</div>
+      <div class="tk-body">All 3 creatives finish between 99.35% and 99.59%. The 30s cut completes slightly better than the 15s versions.</div>
+    </div>
+    <div class="takeaway">
+      <div class="tk-kicker">Concentration</div>
+      <div class="tk-metric">86.4%</div>
+      <div class="tk-title">Three sources carry the buy</div>
+      <div class="tk-body">Vizio, unlabeled inventory and Telly deliver most impressions. The unlabeled slice has the lowest VCR at 98.99%.</div>
+    </div>
+    <div class="takeaway">
+      <div class="tk-kicker">Next question</div>
+      <div class="tk-metric">4 days</div>
+      <div class="tk-title">Re-check with more data</div>
+      <div class="tk-body">Creative differences are tiny at this volume. Revisit after 2&ndash;3 weeks, and confirm why viewability is unmeasured.</div>
+    </div>
+  </div>
+  <p class="footer">Source: delivery dataset (PostgreSQL). CPM = cost / impressions x 1,000. VCR = completed views / impressions.</p>
+</section>
+
+</div>
+
+<script>
+const cs = getComputedStyle(document.documentElement);
+const tok = (n) => cs.getPropertyValue(n).trim();
+window.NO_MOTION =
+  window.__DATABOX_STATIC__ === true ||
+  matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const tweens = new Set();
+function eTween(dur, fn) {
+  return new Promise((resolve) => {
+    const t0 = performance.now();
+    const tw = {
+      finish() {
+        if (!tweens.delete(tw)) return;
+        fn(1);
+        resolve();
+      },
+    };
+    tweens.add(tw);
+    setTimeout(tw.finish, dur + 50);
+    (function frame(now) {
+      if (!tweens.has(tw)) return;
+      const p = Math.max(0, Math.min(1, (now - t0) / dur));
+      if (p === 1) return tw.finish();
+      fn(1 - Math.pow(1 - p, 3));
+      requestAnimationFrame(frame);
+    })(t0);
+  });
+}
+function countUp(el) {
+  const final = el.innerHTML;
+  const m = el.textContent.trim().match(/^(\D*?)([\d,]*\.?\d+)(.*)$/);
+  if (window.NO_MOTION || !m) return Promise.resolve();
+  const [, pre, num, suf] = m;
+  const target = Number(num.replace(/,/g, ""));
+  const dp = (num.split(".")[1] || "").length;
+  const opts = { minimumFractionDigits: dp, maximumFractionDigits: dp, useGrouping: num.includes(",") };
+  return eTween(1200, (t) => {
+    if (t < 1) el.textContent = pre + (target * t).toLocaleString("en-US", opts) + suf;
+    else el.innerHTML = final;
+  });
+}
+function reveal() {
+  if (window.NO_MOTION) return Promise.resolve();
+  const els = [...document.querySelectorAll(".kpi, .card, .takeaway, .note")];
+  els.forEach((el) => el.classList.add("reveal"));
+  document.body.offsetHeight;
+  els.forEach((el) => {
+    const i = [...el.parentElement.children].indexOf(el);
+    el.style.transitionDelay = Math.min(i, 4) * 60 + "ms";
+    el.classList.add("in");
+  });
+  return eTween(740, (t) => {
+    if (t === 1) els.forEach((el) => { el.classList.remove("reveal", "in"); el.style.transitionDelay = ""; });
+  });
+}
+function drawIn() {
+  if (window.NO_MOTION) return Promise.resolve();
+  return eTween(1200, () => {});
+}
+function fontsLoaded() {
+  return Promise.race([document.fonts.ready, new Promise((resolve) => setTimeout(resolve, 3000))]);
+}
+addEventListener("beforeprint", () => [...tweens].forEach((tw) => tw.finish()));
+
+Highcharts.setOptions({
+  colors: Array.from({ length: 15 }, (_, i) => tok("--chart-" + (i + 1))),
+  lang: { thousandsSep: ",", decimalPoint: "." },
+  chart: {
+    backgroundColor: "transparent",
+    style: { fontFamily: "var(--sans)" },
+    spacing: [6, 14, 4, 4],
+    animation: !window.NO_MOTION,
+  },
+  title: { text: undefined },
+  credits: { enabled: false },
+  legend: {
+    itemStyle: { color: "#2B2C2F", fontWeight: "400", fontSize: "11px" },
+    symbolRadius: 3,
+    symbolHeight: 9,
+    symbolWidth: 9,
+    align: "left",
+    verticalAlign: "top",
+    layout: "horizontal",
+    margin: 16,
+  },
+  xAxis: {
+    lineColor: "#D5D2CE",
+    tickLength: 0,
+    gridLineWidth: 0.6,
+    gridLineColor: "#D5D2CE",
+    gridLineDashStyle: "Dash",
+    labels: { style: { color: "#767370", fontSize: "11px", fontWeight: "400" } },
+  },
+  yAxis: {
+    gridLineWidth: 0.6,
+    gridLineColor: "#D5D2CE",
+    gridLineDashStyle: "Dash",
+    labels: { style: { color: "#767370", fontSize: "11px", fontWeight: "400" } },
+    title: { text: null },
+  },
+  tooltip: {
+    useHTML: true,
+    outside: true,
+    animation: false,
+    padding: 10,
+    backgroundColor: "rgba(255,255,255,0.97)",
+    borderColor: "rgba(117,118,119,0.18)",
+    borderWidth: 1,
+    borderRadius: 8,
+    shadow: { color: "rgba(0,0,0,0.12)", offsetX: 0, offsetY: 2, width: 8, opacity: 0.4 },
+    style: { color: "#2B2C2F", fontSize: "12px", fontWeight: "500" },
+  },
+  plotOptions: {
+    series: {
+      animation: window.NO_MOTION ? false : { duration: 800 },
+      marker: { lineWidth: 0 },
+      states: { hover: { halo: { size: 0 } } },
+    },
+    column: { borderWidth: 0, borderRadius: 3, groupPadding: 0.14, pointPadding: 0.06 },
+    spline: { lineWidth: 1.6 },
+    line: { lineWidth: 1.6 },
+  },
+});
+
+const chartResizeObserver = new ResizeObserver((entries) => {
+  for (const entry of entries) {
+    const chart = entry.target.__hc__;
+    if (chart) requestAnimationFrame(() => chart.reflow());
+  }
+});
+matchMedia("print").addEventListener("change", () => Highcharts.charts.forEach((c) => c && c.reflow()));
+
+function renderChart(id, config) {
+  const el = document.getElementById(id);
+  let chart = null;
+  try {
+    chart = Highcharts.chart(el, { ...config, chart: { ...config.chart, reflow: false } });
+    el.__hc__ = chart;
+    chartResizeObserver.observe(el);
+  } catch (e) {
+    console.error("chart " + id + " failed to render:", e);
+  }
+  return chart;
+}
+
+const DOT = (c) => '<span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:' + c + ';vertical-align:middle;margin-right:4px"></span>';
+const fmtInt = (v) => Number(v).toLocaleString("en-US");
+
+const DAYS = ["Oct 27", "Oct 28", "Oct 29", "Oct 30"];
+const DAY_TS = [Date.UTC(2026, 9, 27), Date.UTC(2026, 9, 28), Date.UTC(2026, 9, 29), Date.UTC(2026, 9, 30)];
+const IMPS = [8256, 11241, 11683, 9877];
+const COST = [289.67, 394.2, 409.6, 346.19];
+const VCR = [98.93, 99.43, 99.44, 99.83];
+
+const dailyPts = (arr) => DAY_TS.map((t, i) => [t, arr[i]]);
+
+renderChart("c-daily", {
+  chart: { zoomType: undefined },
+  legend: { enabled: true },
+  xAxis: { type: "datetime", min: DAY_TS[0], max: DAY_TS[3], tickPositions: DAY_TS, labels: { format: "{value:%b %e}" } },
+  yAxis: [
+    { title: { text: null }, labels: { formatter: function () { return fmtInt(this.value); } } },
+    { title: { text: null }, opposite: true, gridLineWidth: 0, labels: { format: "${value}" } },
+  ],
+  tooltip: {
+    shared: true,
+    xDateFormat: "%b %e, %Y",
+    formatter: function () {
+      let s = '<div style="margin-bottom:4px">' + Highcharts.dateFormat("%b %e, %Y", this.x) + "</div>";
+      this.points.forEach((p) => {
+        const v = p.series.name === "Cost" ? "$" + p.y.toFixed(2) : fmtInt(p.y);
+        s += DOT(p.color) + p.series.name + ": <b>" + v + "</b><br/>";
+      });
+      return s;
+    },
+  },
+  series: [
+    { type: "column", name: "Impressions", data: dailyPts(IMPS), color: tok("--chart-1"), yAxis: 0 },
+    {
+      type: "spline",
+      name: "Cost",
+      data: dailyPts(COST),
+      color: tok("--chart-3"),
+      yAxis: 1,
+      marker: { enabled: true, radius: 3, fillColor: "#fff", lineColor: tok("--chart-3"), lineWidth: 2 },
+    },
+  ],
+});
+
+renderChart("c-vcr", {
+  legend: { enabled: false },
+  xAxis: { type: "datetime", min: DAY_TS[0], max: DAY_TS[3], tickPositions: DAY_TS, labels: { format: "{value:%b %e}" } },
+  yAxis: { min: 98, max: 100, labels: { format: "{value}%" } },
+  tooltip: {
+    formatter: function () {
+      return '<div style="margin-bottom:4px">' + Highcharts.dateFormat("%b %e, %Y", this.x) + "</div>" + DOT(this.color) + "VCR: <b>" + this.y.toFixed(2) + "%</b>";
+    },
+  },
+  series: [
+    {
+      type: "spline",
+      name: "VCR",
+      data: dailyPts(VCR),
+      color: tok("--primary"),
+      marker: { enabled: true, radius: 3, fillColor: "#fff", lineColor: tok("--primary"), lineWidth: 2 },
+      dataLabels: { enabled: true, format: "{y:.2f}%", style: { fontSize: "10.5px", fontWeight: "700", color: "#2B2C2F", textOutline: "none" } },
+    },
+  ],
+});
+
+function donutCenter(total, label) {
+  return {
+    render() {
+      const s = this.series[0];
+      const c = s.center;
+      const x = this.plotLeft + c[0];
+      const y = this.plotTop + c[1];
+      if (this.__ctr) this.__ctr.destroy();
+      this.__ctr = this.renderer
+        .text(
+          '<span style="font:600 24px var(--sans);color:var(--heading)">' + total + "</span><br/>" +
+            '<span style="font:600 10px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)">' + label + "</span>",
+          x, y - 6, true
+        )
+        .attr({ align: "center" })
+        .css({ textAlign: "center" })
+        .add();
+    },
+  };
+}
+
+renderChart("c-creative", {
+  chart: { events: donutCenter("41.1K", "Impressions") },
+  legend: { enabled: true, layout: "vertical", align: "left", verticalAlign: "bottom", margin: 8 },
+  tooltip: { pointFormat: "<b>{point.y:,.0f}</b> impressions ({point.percentage:.1f}%)" },
+  plotOptions: { pie: { dataLabels: { enabled: false }, showInLegend: true } },
+  series: [
+    {
+      type: "pie",
+      name: "Impressions",
+      innerSize: "70%",
+      borderWidth: 3,
+      borderColor: "#fff",
+      borderRadius: 4,
+      data: [
+        { name: "Burgess for Georgia 15s", y: 14190, color: tok("--chart-1") },
+        { name: "S. Burgess for State Rep 15s", y: 14178, color: tok("--chart-2") },
+        { name: "Burgess for Georgia 30s", y: 12689, color: tok("--chart-3") },
+      ],
+    },
+  ],
+});
+
+const PUBS = [
+  ["Vizio Inc.", 16143],
+  ["(unlabeled)", 11083],
+  ["Telly Tv", 8231],
+  ["LG Channels", 1077],
+  ["Ion", 847],
+  ["Local Now", 580],
+  ["The Roku Channel", 471],
+  ["Fawesome.tv", 471],
+  ["Vix", 294],
+  ["Frndly TV", 160],
+];
+renderChart("c-pub", {
+  chart: { type: "bar" },
+  legend: { enabled: false },
+  xAxis: { categories: PUBS.map((p) => p[0]), gridLineWidth: 0, labels: { style: { color: "#2B2C2F", fontSize: "11px" } } },
+  yAxis: { labels: { formatter: function () { return fmtInt(this.value); } } },
+  tooltip: { pointFormat: "<b>{point.y:,.0f}</b> impressions" },
+  plotOptions: { bar: { borderRadius: 3, borderWidth: 0, pointPadding: 0.1, groupPadding: 0.1 } },
+  series: [
+    {
+      type: "bar",
+      name: "Impressions",
+      data: PUBS.map((p) => p[1]),
+      color: tok("--primary"),
+      dataLabels: { enabled: true, formatter: function () { return fmtInt(this.y); }, style: { fontSize: "10.5px", fontWeight: "700", color: "#2B2C2F", textOutline: "none" } },
+    },
+  ],
+});
+
+renderChart("c-seller", {
+  chart: { events: donutCenter("41.1K", "Impressions") },
+  legend: { enabled: true, layout: "vertical", align: "left", verticalAlign: "bottom", margin: 8 },
+  tooltip: { pointFormat: "<b>{point.y:,.0f}</b> impressions ({point.percentage:.1f}%)" },
+  plotOptions: { pie: { dataLabels: { enabled: false }, showInLegend: true } },
+  series: [
+    {
+      type: "pie",
+      name: "Impressions",
+      innerSize: "70%",
+      borderWidth: 3,
+      borderColor: "#fff",
+      borderRadius: 4,
+      data: [
+        { name: "vizio.com", y: 15850, color: tok("--chart-1") },
+        { name: "gray.tv", y: 10986, color: tok("--chart-2") },
+        { name: "telly.com", y: 8231, color: tok("--chart-3") },
+        { name: "scripps.com", y: 1500, color: tok("--chart-4") },
+        { name: "lgads.tv", y: 952, color: tok("--chart-5") },
+        { name: "Other", y: 3538, color: tok("--chart-6") },
+      ],
+    },
+  ],
+});
+
+Promise.all([fontsLoaded(), drawIn(), reveal(), ...[...document.querySelectorAll(".kpi-val")].map(countUp)]).then(() => {
+  document.documentElement.dataset.ready = "true";
+});
+</script>
+</body>
+</html>
